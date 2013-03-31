@@ -1,8 +1,8 @@
-package com.acamasystems.idea.plugin.tabsession;
+package com.squiek.idea.plugin.tabsession;
 
-import com.acamasystems.idea.plugin.tabsession.ui.LoadSession;
-import com.acamasystems.idea.plugin.tabsession.ui.SaveSession;
-import com.acamasystems.idea.plugin.tabsession.ui.SessionConfiguration;
+import com.squiek.idea.plugin.tabsession.ui.LoadSession;
+import com.squiek.idea.plugin.tabsession.ui.SaveSession;
+import com.squiek.idea.plugin.tabsession.ui.SessionConfiguration;
 import com.intellij.openapi.components.*;
 import com.intellij.openapi.diagnostic.Logger;
 import com.intellij.openapi.editor.Editor;
@@ -19,7 +19,6 @@ import com.intellij.openapi.vfs.LocalFileSystem;
 import com.intellij.openapi.vfs.VirtualFile;
 import com.intellij.openapi.wm.WindowManager;
 import com.intellij.ui.awt.RelativePoint;
-import com.intellij.util.xmlb.XmlSerializerUtil;
 import org.jdom.Element;
 import org.jetbrains.annotations.Nls;
 import org.jetbrains.annotations.NotNull;
@@ -28,8 +27,6 @@ import org.jetbrains.annotations.Nullable;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
-import java.util.Collection;
 
 /**
  * created by alp (29.03.2013)

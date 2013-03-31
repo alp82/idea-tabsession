@@ -1,8 +1,8 @@
 <idea-plugin version="2">
-  <id>com.acamasystems.idea.plugin.tabsession</id>
+  <id>com.squiek.idea.plugin.tabsession</id>
   <name>Tab Session</name>
   <version>0.1</version>
-  <vendor email="alper@acama-systems.com" url="http://www.acama-systems.com">Acama Systems</vendor>
+  <vendor email="alportac@gmail.com" url="http://www.squiek.com">Alper Ortac</vendor>
 
   <description><![CDATA[
       Save groups of tabs and switch between different sessions.<br>
@@ -35,7 +35,7 @@
   <project-components>
     <!-- Add your project components here -->
       <component>
-          <implementation-class>com.acamasystems.idea.plugin.tabsession.SessionComponent</implementation-class>
+          <implementation-class>com.squiek.idea.plugin.tabsession.SessionComponent</implementation-class>
       </component>
   </project-components>
 
@@ -45,10 +45,10 @@
           <add-to-group group-id="EditorTabPopupMenu" relative-to-action="CopyReference" anchor="after" />
           <add-to-group group-id="EditorPopupMenu" relative-to-action="CompareClipboardWithSelection" anchor="before" />
           <separator/>
-          <action id="TabSession.Save" class="com.acamasystems.idea.plugin.tabsession.action.Save" text="_Save Tab Session..." description="Save Tab Session">
+          <action id="TabSession.Save" class="com.squiek.idea.plugin.tabsession.action.Save" text="_Save Tab Session..." description="Save Tab Session">
               <keyboard-shortcut first-keystroke="control shift T" second-keystroke="S" keymap="$default"/>
           </action>
-          <action id="TabSession.Load" class="com.acamasystems.idea.plugin.tabsession.action.Load" text="_Load Tab Session..." description="Load Tab Session">
+          <action id="TabSession.Load" class="com.squiek.idea.plugin.tabsession.action.Load" text="_Load Tab Session..." description="Load Tab Session">
               <keyboard-shortcut first-keystroke="control shift T" second-keystroke="L" keymap="$default"/>
           </action>
           <separator/>

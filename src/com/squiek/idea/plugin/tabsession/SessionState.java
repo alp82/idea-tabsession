@@ -1,9 +1,6 @@
-package com.acamasystems.idea.plugin.tabsession;
-
-import org.jdom.Element;
+package com.squiek.idea.plugin.tabsession;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 
 /**

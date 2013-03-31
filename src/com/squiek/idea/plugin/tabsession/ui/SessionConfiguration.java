@@ -1,7 +1,7 @@
-package com.acamasystems.idea.plugin.tabsession.ui;
+package com.squiek.idea.plugin.tabsession.ui;
 
 
-import com.acamasystems.idea.plugin.tabsession.SessionState;
+import com.squiek.idea.plugin.tabsession.SessionState;
 import com.intellij.ui.components.JBList;
 
 import javax.swing.*;

@@ -1,4 +1,4 @@
-package com.acamasystems.idea.plugin.tabsession.ui;
+package com.squiek.idea.plugin.tabsession.ui;
 
 import javax.swing.*;
 import javax.swing.event.ChangeEvent;
