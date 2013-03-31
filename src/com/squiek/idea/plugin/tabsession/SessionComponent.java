@@ -160,11 +160,13 @@ public class SessionComponent implements ProjectComponent, Configurable, Persist
 
         for(Editor editor : editors) {
             VirtualFile vf = fileDocManager.getFile(editor.getDocument());
-            String path = vf.getCanonicalPath();
-            if(path.equals(selectedFiles[0].getCanonicalPath())) {
-                session.focusedFile = path;
+            if(vf != null) {
+                String path = vf.getCanonicalPath();
+                if(path.equals(selectedFiles[0].getCanonicalPath())) {
+                    session.focusedFile = path;
+                }
+                session.addFileIfNew(path);
             }
-            session.addFileIfNew(path);
         }
 
         return editors.length;

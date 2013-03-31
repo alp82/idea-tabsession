@@ -1,5 +1,5 @@
 <idea-plugin version="2">
-  <id>com.squiek.idea.plugin.tabsession</id>
+  <id>idea.plugin.tabsession</id>
   <name>Tab Session</name>
   <version>0.1</version>
   <vendor email="alportac@gmail.com" url="http://www.squiek.com">Alper Ortac</vendor>
