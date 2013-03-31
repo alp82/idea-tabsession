@@ -1,0 +1,61 @@
+<idea-plugin version="2">
+  <id>com.acamasystems.idea.plugin.tabsession</id>
+  <name>Tab Session</name>
+  <version>0.1</version>
+  <vendor email="alper@acama-systems.com" url="http://www.acama-systems.com">Acama Systems</vendor>
+
+  <description><![CDATA[
+      Save groups of tabs and switch between different sessions.<br>
+      <small>Comparable to numerous browser plugins like Session Buddy for Chrome or Session Manager for Firefox.</small>
+      ]]></description>
+
+  <change-notes><![CDATA[
+      <div><strong>0.1</strong></div>
+      <ul>
+        <li>Initial release</li>
+        <li>Save a group of tabs as a session</li>
+        <li>Switch between saved sessions in order to reopen all assigned tabs</li>
+      </ul>
+      ]]>
+  </change-notes>
+
+  <!-- please see http://confluence.jetbrains.net/display/IDEADEV/Build+Number+Ranges for description -->
+  <idea-version since-build="107.105"/>
+
+  <!-- please see http://confluence.jetbrains.net/display/IDEADEV/Plugin+Compatibility+with+IntelliJ+Platform+Products
+       on how to target different products -->
+  <!-- uncomment to enable plugin in all products
+  <depends>com.intellij.modules.lang</depends>
+  -->
+
+  <application-components>
+    <!-- Add your application components here -->
+  </application-components>
+
+  <project-components>
+    <!-- Add your project components here -->
+      <component>
+          <implementation-class>com.acamasystems.idea.plugin.tabsession.SessionComponent</implementation-class>
+      </component>
+  </project-components>
+
+  <actions>
+      <group id="TabSession.Menu" text="_Tab Session" description="Tab Session">
+          <add-to-group group-id="EditorTabsGroup" relative-to-action="ReopenClosedTab" anchor="before" />
+          <add-to-group group-id="EditorTabPopupMenu" relative-to-action="CopyReference" anchor="after" />
+          <add-to-group group-id="EditorPopupMenu" relative-to-action="CompareClipboardWithSelection" anchor="before" />
+          <separator/>
+          <action id="TabSession.Save" class="com.acamasystems.idea.plugin.tabsession.action.Save" text="_Save Tab Session..." description="Save Tab Session">
+              <keyboard-shortcut first-keystroke="control shift T" second-keystroke="S" keymap="$default"/>
+          </action>
+          <action id="TabSession.Load" class="com.acamasystems.idea.plugin.tabsession.action.Load" text="_Load Tab Session..." description="Load Tab Session">
+              <keyboard-shortcut first-keystroke="control shift T" second-keystroke="L" keymap="$default"/>
+          </action>
+          <separator/>
+      </group>
+  </actions>
+
+  <extensions defaultExtensionNs="com.intellij">
+    <!-- Add your extensions here -->
+   </extensions>
+</idea-plugin>
