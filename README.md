@@ -8,7 +8,7 @@ Installation Instructions
 
 **Go to the plugin settings of IntelliJ IDEA, click on `Browse repositories...`, search for "Tab Session" and install it.**
 
-Or download the plugin JAR from the [Jetbrains Plugin: Tab Session](http://plugins.jetbrains.com/plugin?pr=&pluginId=7209) page, copy it to your .IntelliJIdeaXX/config/plugins and reload IDEA.
+Or download the plugin JAR from the [Jetbrains Plugin: Tab Session](http://plugins.jetbrains.com/plugin?pr=&pluginId=7209) page, copy it to your `.IntelliJIdeaXX/config/plugins` folder and reload IDEA.
 
 Or check out the source code and build the plugin manually.
 
