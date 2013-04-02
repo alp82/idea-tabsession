@@ -1,7 +1,19 @@
-idea-tabsession
-===============
+Tab Session
+===========
 
-IntelliJ IDEA plugin to save groups of tabs and switch between different sessions.
+Save groups of tabs and switch between different sessions.
+
+Installation Instructions
+-------------------------
+
+**Go to the plugin settings of IntelliJ IDEA, click on `Browse repositories...`, search for "Tab Session" and install it.**
+
+Or download the plugin JAR from the [Jetbrains Plugin: Tab Session](http://plugins.jetbrains.com/plugin?pr=&pluginId=7209) page, copy it to your .IntelliJIdeaXX/config/plugins and reload IDEA.
+
+Or check out the source code and build the plugin manually.
+
+What is Tab Session?
+--------------------
 
 The plugin adds two new Actions `Save Tab Session` and `Load Tab Session` to IDEA in three different menues:
 * Main menu -> Windows -> Editor Tabs
@@ -22,4 +34,8 @@ After loading a session a notification is displayed:
 
 ![Loaded Session Notification](/resources/img/loaded-notification.png "Loaded Session Notification")
 
-In a future version it will be possible to manage existing sessions in order to modify or remove them. To manually do that, just edit the `tabsession.xml` configuration file in your `.idea` folder.
+Additionally, you are able to add, modify, remove and reorder sessions and their tabs in the Tab Session Settings page:
+
+![Settings Page](/resources/img/settings-page.png "Settings Page")
+
+If anything went wrong, you can manually change the Tab Session configuration by editing the `tabsession.xml` file in your `.idea` folder. This is not encouraged because it can lead to problems. If you are stuck, just delete the file and you start with an empty (but working) configuration.

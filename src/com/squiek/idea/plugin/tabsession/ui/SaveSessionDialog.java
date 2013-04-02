@@ -1,15 +1,15 @@
 package com.squiek.idea.plugin.tabsession.ui;
 
+import com.squiek.idea.plugin.tabsession.SessionComponent;
+
 import javax.swing.*;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
+import java.awt.*;
 import java.awt.event.*;
 import java.util.ArrayList;
 
-public class SaveSession extends JDialog {
-    final private String ERROR_MESSAGE_NAME_EMPTY = "Session name can't be empty";
-    final private String ERROR_MESSAGE_NAME_EXISTS = "Session with that name already exists and will be overwritten";
-
+public class SaveSessionDialog extends JDialog {
     private JPanel contentPane;
     private JPanel messagePanel;
     private JLabel errorMessage;
@@ -21,8 +21,9 @@ public class SaveSession extends JDialog {
     private JRadioButton radioSaved;
 
     private boolean newNameFirstKeyTyped = false;
+    private Container relativeContainer;
 
-    public SaveSession() {
+    public SaveSessionDialog() {
         setTitle("Save Tab Session");
         setContentPane(contentPane);
         setModal(true);
@@ -114,16 +115,16 @@ public class SaveSession extends JDialog {
                 String savedName = (String) model.getElementAt(i);
                 if (savedName.equals(newName)) {
                     isDuplicate = true;
-                    errorMessage.setText(ERROR_MESSAGE_NAME_EXISTS);
+                    errorMessage.setText(SessionComponent.ERROR_MESSAGE_NAME_EXISTS_OVERWRITE);
                 }
             }
         } else {
-            errorMessage.setText(ERROR_MESSAGE_NAME_EMPTY);
+            errorMessage.setText(SessionComponent.ERROR_MESSAGE_NAME_EMPTY);
         }
 
         buttonOK.setEnabled(isValid);
         messagePanel.setVisible(!isValid || isDuplicate);
-        pack();
+        refresh();
     }
 
     private void validateSavedNameTextField() {
@@ -133,7 +134,7 @@ public class SaveSession extends JDialog {
         boolean isValid = model.getSelectedItem() != null;
         buttonOK.setEnabled(isValid);
         messagePanel.setVisible(false);
-        pack();
+        refresh();
     }
 
     private void onOK() {
@@ -166,8 +167,14 @@ public class SaveSession extends JDialog {
         return name;
     }
 
-    public void display() {
+    public void refresh() {
         pack();
+        setLocationRelativeTo(relativeContainer);
+    }
+
+    public void display(Container relativeContainer) {
+        this.relativeContainer = relativeContainer;
+        refresh();
         setVisible(true);
     }
 }

@@ -1,7 +1,7 @@
 package com.squiek.idea.plugin.tabsession;
 
-import com.squiek.idea.plugin.tabsession.ui.LoadSession;
-import com.squiek.idea.plugin.tabsession.ui.SaveSession;
+import com.squiek.idea.plugin.tabsession.ui.LoadSessionDialog;
+import com.squiek.idea.plugin.tabsession.ui.SaveSessionDialog;
 import com.squiek.idea.plugin.tabsession.ui.SessionConfiguration;
 import com.intellij.openapi.components.*;
 import com.intellij.openapi.diagnostic.Logger;
@@ -46,6 +46,12 @@ public class SessionComponent implements ProjectComponent, Configurable, Persist
      */
 
     public static final int STATE_VERSION = 1;
+    public static final String ERROR_MESSAGE_NAME_EMPTY = "Session name can't be empty";
+    public static final String ERROR_MESSAGE_NAME_EXISTS = "Session with that name already exists";
+    public static final String ERROR_MESSAGE_NAME_EXISTS_OVERWRITE = "Session with that name already exists and will be overwritten";
+    public static final String ERROR_MESSAGE_FILE_EMPTY = "File path can't be empty";
+    public static final String ERROR_MESSAGE_FILE_EXISTS = "File path already exists in Session";
+    public static final String ERROR_MESSAGE_FILE_WRONG_PATH = "Entered path is not an existing file";
 
     private static Logger LOG = Logger.getInstance(SessionComponent.class);
 
@@ -77,6 +83,10 @@ public class SessionComponent implements ProjectComponent, Configurable, Persist
 
     public void projectClosed() {
         // called when project is being closed
+    }
+
+    public SessionState getSessionState() {
+        return sessionState;
     }
 
     /*
@@ -224,9 +234,8 @@ public class SessionComponent implements ProjectComponent, Configurable, Persist
     }
 
     public void showSaveDialog() {
-        JMenuBar menuBar = WindowManager.getInstance().getFrame(project).getJMenuBar();
-        final SaveSession saveDialog = new SaveSession();
-        saveDialog.setLocationRelativeTo(menuBar);
+        JFrame frame = WindowManager.getInstance().getFrame(project);
+        final SaveSessionDialog saveDialog = new SaveSessionDialog();
         saveDialog.setSavedSessions(sessionState.getSessionNames());
         saveDialog.addOnOKListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
@@ -236,14 +245,15 @@ public class SessionComponent implements ProjectComponent, Configurable, Persist
                 showMessage(htmlText);
             }
         });
-        saveDialog.display();
+        saveDialog.display(frame);
     }
 
     public void showLoadDialog() {
-        JMenuBar menuBar = WindowManager.getInstance().getFrame(project).getJMenuBar();
-        final LoadSession loadDialog = new LoadSession();
-        loadDialog.setLocationRelativeTo(menuBar);
+        JFrame frame = WindowManager.getInstance().getFrame(project);
+        final LoadSessionDialog loadDialog = new LoadSessionDialog();
         loadDialog.setSessionState(sessionState);
+        loadDialog.setProject(project);
+        loadDialog.setConfigurable(this);
         loadDialog.addOnOKListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 String sessionName = loadDialog.getSessionName();
@@ -252,7 +262,7 @@ public class SessionComponent implements ProjectComponent, Configurable, Persist
                 showMessage(htmlText);
             }
         });
-        loadDialog.display();
+        loadDialog.display(frame);
     }
 
     /*
@@ -275,27 +285,29 @@ public class SessionComponent implements ProjectComponent, Configurable, Persist
     @Override
     public JComponent createComponent() {
         if(form == null) {
-            form = new SessionConfiguration();
+            form = new SessionConfiguration(project);
         }
         return form.getRootComponent();
     }
 
     @Override
     public boolean isModified() {
-        return form != null && form.isModified(sessionState);
+        return form != null && form.isModified();
     }
 
     @Override
     public void apply() throws ConfigurationException {
         if(form != null) {
-            form.getData(sessionState);
+            sessionState = form.getData();
+            reset();
         }
     }
 
     @Override
     public void reset() {
         if(form != null) {
-            form.setData(sessionState);
+            form.setInitialState(sessionState);
+            form.mapStateToUI();
         }
     }
 

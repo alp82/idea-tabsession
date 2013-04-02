@@ -1,15 +1,22 @@
 <idea-plugin version="2">
   <id>idea.plugin.tabsession</id>
   <name>Tab Session</name>
-  <version>0.1</version>
-  <vendor email="alportac@gmail.com" url="http://www.squiek.com">Alper Ortac</vendor>
+  <version>0.2</version>
+  <vendor email="alportac@gmail.com" url="http://alp82.github.com/idea-tabsession">Alper Ortac</vendor>
 
   <description><![CDATA[
-      Save groups of tabs and switch between different sessions.<br>
-      <small>Comparable to numerous browser plugins like Session Buddy for Chrome or Session Manager for Firefox.</small>
+      <p><strong>Save groups of tabs and switch between different sessions.<strong></p>
+      <p>Comparable to numerous browser plugins like Session Manager (Firefox) or Session Buddy (Chrome).</p>
       ]]></description>
 
   <change-notes><![CDATA[
+      <div><strong>0.2</strong></div>
+      <ul>
+        <li>Added Settings page to manage sessions (Settings -> Tab Session)</li>
+        <li>Add, Edit or Remove sessions and all associated open tabs</li>
+        <li>Choose any file as active tab</li>
+        <li>Reorder sessions and their files</li>
+      </ul>
       <div><strong>0.1</strong></div>
       <ul>
         <li>Initial release</li>

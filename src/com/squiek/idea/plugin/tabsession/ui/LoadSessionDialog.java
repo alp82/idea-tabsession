@@ -1,14 +1,19 @@
 package com.squiek.idea.plugin.tabsession.ui;
 
+import com.intellij.openapi.options.Configurable;
+import com.intellij.openapi.options.ShowSettingsUtil;
+import com.intellij.openapi.project.Project;
+import com.squiek.idea.plugin.tabsession.SessionComponent;
 import com.squiek.idea.plugin.tabsession.SessionState;
 import com.intellij.ui.components.JBList;
 
 import javax.swing.*;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
+import java.awt.*;
 import java.awt.event.*;
 
-public class LoadSession extends JDialog {
+public class LoadSessionDialog extends JDialog {
     private JPanel contentPane;
     private JButton buttonOK;
     private JButton buttonCancel;
@@ -17,8 +22,10 @@ public class LoadSession extends JDialog {
     private JBList fileList;
 
     private SessionState sessionState;
+    private Project project;
+    private Configurable configurable;
 
-    public LoadSession() {
+    public LoadSessionDialog() {
         setTitle("Load Tab Session");
         setContentPane(contentPane);
         setModal(true);
@@ -33,6 +40,12 @@ public class LoadSession extends JDialog {
         buttonCancel.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 onCancel();
+            }
+        });
+
+        buttonManage.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                onManage();
             }
         });
 
@@ -80,6 +93,13 @@ public class LoadSession extends JDialog {
         dispose();
     }
 
+    private void onManage() {
+        if(project != null && configurable != null) {
+            ShowSettingsUtil.getInstance().showSettingsDialog(project, configurable);
+            setSessionState(((SessionComponent) configurable).getSessionState());
+        }
+    }
+
     public String getSessionName() {
         return (String) sessionList.getSelectedValue();
     }
@@ -92,14 +112,25 @@ public class LoadSession extends JDialog {
             model.addElement(name);
         }
         sessionList.setModel(model);
+        fileList.setModel(new DefaultListModel());
+    }
+
+    public void setProject(Project project) {
+        this.project = project;
+    }
+
+    public void setConfigurable(Configurable configurable) {
+        this.configurable = configurable;
     }
 
     public void addOnOKListener(ActionListener listener) {
         buttonOK.addActionListener(listener);
     }
 
-    public void display() {
+    public void display(Container relativeContainer) {
         pack();
+        setLocationRelativeTo(relativeContainer);
         setVisible(true);
     }
+
 }
