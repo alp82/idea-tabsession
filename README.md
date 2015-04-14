@@ -1,3 +1,10 @@
+Discontinued
+============
+
+This project will not be continued because IDEA already supports that feature. You can save and load contexts easily as shown in this screenshot:
+
+![IDEA Context](http://ibin.co/1yLedwskhh2f "Save and load contexts in IDEA")
+
 Tab Session
 ===========
 
