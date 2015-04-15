@@ -5,6 +5,11 @@ This project will not be continued because IDEA already supports that feature. Y
 
 ![IDEA Context](http://ibin.co/1yLedwskhh2f "Save and load contexts in IDEA")
 
+This is only accessible when the Task Management plugin is enabled. Documentation:
+* [Managing Tasks and Context](https://www.jetbrains.com/idea/help/managing-tasks-and-context.html)
+* [Saving and Clearing Contexts](https://www.jetbrains.com/idea/help/saving-and-clearing-contexts.html)
+* [Switching Between Contexts](https://www.jetbrains.com/idea/help/switching-between-contexts.html)
+
 Tab Session
 ===========
 
